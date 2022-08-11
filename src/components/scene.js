@@ -13,7 +13,7 @@ export class Scene  extends PIXI.Container{
                 let randomColor = [0x1614e9, 0x0dc70d,0xde1322,0xe8e21b][Math.floor(Math.random()*4)]
                 const bubble = new Bubble([i, j], randomColor)
                 if(j % 2 && i === 10) continue
-                if( j > 9) {
+                if( j > -1) {
                     bubble.empty(true)
                     bubble.tint(0xffffff)
                 }
@@ -26,4 +26,5 @@ export class Scene  extends PIXI.Container{
     find(x, y){
         return this.children.filter(bubble => bubble.coords[0] === x && bubble.coords[1] === y)[0]
     }
+
 }

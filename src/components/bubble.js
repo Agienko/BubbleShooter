@@ -39,7 +39,8 @@ export class Bubble extends PIXI.Container {
     }
     empty(bool){
         this.isEmpty = bool
-        this.alpha = this.isEmpty ? 0.1 : 1
+        this.alpha = this.isEmpty ? 0.1 : 1;
+        this.tint(0xffffff)
     }
     reboundX(){
         this.vx *= -1
@@ -51,28 +52,8 @@ export class Bubble extends PIXI.Container {
         this.vx = 0
         this.vy = 0
     }
-    getAroundCoords(){
 
-       let i = this.coords[0]
-       let j = this.coords[1]
 
-        if (j % 2 === 0){
-            const line1 = [[i-1,j-1], [i, j-1]].filter(cord => cord[0] >=0 && cord[1] >=0 && cord[0] <= 9)
-            const line2 = [[i-1, j],[i,j], [i+1, j]].filter(cord => cord[0] >=0 && cord[1] >=0 && cord[0] <= 10)
-            const line3 = [ [i-1, j+1], [i, j+1]].filter(cord => cord[0] >=0 && cord[1] >=0 && cord[0] <= 9)
-            return [...line1, ...line2, ...line3]
-        } else {
-            const line1 = [[i, j-1], [i+1, j-1]].filter(cord => cord[0] >=0 && cord[1] >=0 && cord[0] <= 10)
-            const line2 = [[i-1, j],[i,j], [i+1, j]].filter(cord => cord[0] >=0 && cord[1] >=0 && cord[0] <= 9)
-            const line3 = [[i, j+1], [i+1, j+1]].filter(cord => cord[0] >=0 && cord[1] >=0 && cord[0] <= 10)
-            return [...line1, ...line2, ...line3]
-        }
 
-    }
-    isNear(ballX, ballY) {
-        let aroundArr = this.getAroundCoords().filter(coords => coords[0] === ballX && coords[1] === ballY)
-
-        return aroundArr.length === 1
-    }
 
 }
